@@ -29,7 +29,10 @@ struct CurrentUserProfileView: View {
                                 .stroke(Color(.systemGray4) ,lineWidth: 1)
                         }
                 }
-                UserContentListView()
+                if let user = currentUser {
+                    UserContentListView(user: user)
+                }
+               
             }.toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -49,6 +52,6 @@ struct CurrentUserProfileView: View {
     }
 }
 
-#Preview {
-    CurrentUserProfileView()
-}
+//#Preview {
+//    CurrentUserProfileView()
+//}

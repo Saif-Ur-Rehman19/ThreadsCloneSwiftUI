@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct UserContentListView: View {
-    @StateObject var viewModel = ProfileViewModel()
+    @StateObject var viewModel: UserContentListViewModel
     @State private var selectedFilter: ProfileThreadFilter = .threads
     @Namespace var animation
-    private var currentUser: User? {
-        return viewModel.currentUser
+    
+    init(user: User) {
+        self._viewModel = StateObject(wrappedValue: UserContentListViewModel(user: user))
     }
+//    private var currentUser: User? {
+//        return viewModel.currentUser
+//    }
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ProfileThreadFilter.allCases.count)
         return UIScreen.main.bounds.width / count - 20
@@ -37,14 +41,14 @@ struct UserContentListView: View {
                 }
             }
             LazyVStack {
-                ForEach(0...10, id: \.self) { thread in
-                    ThreadCell()
+                ForEach(viewModel.threads) { thread in
+                   ThreadCell(thread: thread)
                 }
             }
         }.padding(.vertical, 8)
     }
 }
 
-#Preview {
-    UserContentListView()
-}
+//#Preview {
+//    UserContentListView()
+//}

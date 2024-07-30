@@ -24,7 +24,7 @@ struct ProfileView: View {
                     Text("Follow")
                         .font(.subheadline).fontWeight(.semibold).foregroundColor(.white).frame(width: 352, height: 32).background(.black).cornerRadius(8)
                 }
-                UserContentListView()
+                UserContentListView(user: user)
             }
         }.navigationBarTitleDisplayMode(.inline).padding(.horizontal)
     }
